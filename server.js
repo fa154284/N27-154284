@@ -11,7 +11,7 @@ const server = meineApp.listen(process.env.PORT || 3000, () => {
 })
 
 meineApp.get('/',(browserAnfrage, serverAntwort, next) => {              
-    res.render('index.ejs', {})          
+    serverAntwort.render('index.ejs', {})          
 })
 
 // Wenn die login-Seite im Browser aufgerufen wird,...
@@ -21,12 +21,12 @@ meineApp.get('/login',(browserAnfrage, serverAntwort, next)=> {
   //...dann wird die login.ejs vom Server gerendert an den
   //Browser zurückgegeben  
     
-    res.render('login.ejs', {})
+    serverAntwort.render('login.ejs', {})
 })
 
 //Die meineApp.post('login') wird ausgeführt, sobald der Button 
 //auf dem Login-Formular gedrückt wird.
 
 meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {              
-    res.render('index.ejs', {})
+    serverAntwort.render('index.ejs', {})
 })  
