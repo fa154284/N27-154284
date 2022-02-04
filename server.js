@@ -58,7 +58,11 @@ meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {
     console.log("ID des Kunden: "+ idKunde)
     console.log("Kennwort des Kunden: "+ kennwort)
 
-    serverAntwort.render('index.ejs', {})          
+    if(idKunde == kunde.IdKunde){
+        serverAntwort.render('index.ejs', {})
+    }else{
+        serverAntwort.render('login.ejs', {})  
+    }     
 })
 
 // Wenn die login-Seite im Browser aufgerufen wird,...
@@ -77,3 +81,6 @@ meineApp.get('/login',(browserAnfrage, serverAntwort, next)=> {
 meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {              
     serverAntwort.render('index.ejs', {})
 })  
+
+
+require('./Uebungen/ifUndElse.js')
