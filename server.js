@@ -5,7 +5,6 @@
 //Alle Kunden unserer Bank haben dieselben Eigenschaften, aber
 //unterschiedliche Eigenschaftswerte
 
-
 class Kunde {
     constructor(){
         this.IdKunde
@@ -33,7 +32,6 @@ kunde.Geburtsdatum = "23.10.2002"
 kunde.Mail = "mueller@web.de"
 kunde.Kennwort = "123"
 
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const req = require('express/lib/request')
@@ -58,12 +56,24 @@ meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {
     console.log("ID des Kunden: "+ idKunde)
     console.log("Kennwort des Kunden: "+ kennwort)
 
-    if(idKunde == kunde.IdKunde){
+// Die Indentität des Kunden wird überprüft
+
+    if(idKunde == kunde.IdKunde && kennwort == kunde.kennwort){
+
+        // Wenn die Id des KUnden mit der Eingabe im Browser übereinstimmt
+        // UND ("&&") das Kennwort ebenfalls übereinstimmt,
+        // gerendert gibt der Server die gerenderte Index-Seite zurück.
+
         serverAntwort.render('index.ejs', {})
     }else{
+
+        // Wenn entweder die eingegebende Id oder das Kennwort oder beides
+        // nicht übereinstimmt, wird der Login verwigert. Es wird dann die
+        // gerenderte LOgin-Seite an den Browser zurückgegeben.
         serverAntwort.render('login.ejs', {})  
     }     
 })
+
 
 // Wenn die login-Seite im Browser aufgerufen wird,...
 
@@ -83,4 +93,3 @@ meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {
 })  
 
 
-require('./Uebungen/ifUndElse.js')
