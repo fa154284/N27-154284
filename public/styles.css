@@ -15,7 +15,7 @@
   background-color: rgb(119, 107, 107);        
   font-size: 2vh;    
   text-align:center;  
-  color: white;      
+  color: rgb(119, 107, 107);      
   margin-bottom: 20px;
 }
 
@@ -41,7 +41,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  font-size: 4vh;
+  font-size: 2.5vh;
 }
   
 .login {

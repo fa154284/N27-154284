@@ -13,6 +13,7 @@ class Kunde{
         this.Kontostand
         this.Geburtsdatum
         this.Mail
+        this.Rufnummer
     }
 }
 
@@ -28,6 +29,7 @@ kunde.Vorname = "Pit"
 kunde.Geburtsdatum = "23.10.2000"
 kunde.Mail = "mueller@web.de"
 kunde.Kennwort = "123"
+kunde.Rufnummer = "0123-4567890"
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -130,6 +132,18 @@ meineApp.get('/login',(browserAnfrage, serverAntwort, next) => {
 
 meineApp.get('/about',(browserAnfrage, serverAntwort, next) => {              
     serverAntwort.render('about.ejs', {})          
+})
+
+meineApp.get('/profile',(browserAnfrage, serverAntwort, next) => { 
+    
+    
+    serverAntwort.render('profile.ejs', {
+        Vorname:kunde.Vorname,
+        Nachname: kunde.Nachname,
+        Mail: kunde.Mail,
+        Rufnummer: kunde.Rufnummer,
+        Kennwort: kunde.Kennwort
+    })        
 })
 
 // require('./Uebungen/ifUndElse.js')
