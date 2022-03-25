@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">    
@@ -14,7 +14,9 @@
                 <h1>N27 Bank</h1>
             </div>
             <div class="navigationsleiste">
-                 Bitte anmelden
+                <a href="/login">
+                    <i class="fa fa-sign-in fa-2x" title="Anmelden"></i>
+                </a>
             </div>
             <div class="inhaltsbereich">
                 <form method="post">
@@ -24,10 +26,10 @@
                     <input type="password" name="Kennwort"><br><br>        
                     <button class="login" formaction="/login">Einloggen</button>
                 </form> 
-                <p class="meldung"><%= meldung %></p>
+                <p class="meldung"><%= Meldung %></p>
             </div>
             <div class="fusszeile">
-                <i class="fa fa-copyright" aria-hidden="true"></i>
+                <i class="fa fa-copyright" aria-hidden="true"></i> GW21A 2022
             </div>
         </div>
     </body>

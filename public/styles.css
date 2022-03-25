@@ -1,6 +1,6 @@
 .rahmen {
   max-width: 400px;
-  border: 4px solid darkgrey;
+  border: 4px solid rgb(119, 107, 107); 
   border-radius: 5px;      
   margin: 0 auto
 }
@@ -12,10 +12,10 @@
 
 .navigationsleiste {  
   font-family: Arial, Helvetica, sans-serif;    
-  background-color: rgb(119, 107, 107);        
+  background-color: rgb(119, 107, 107);    
+  color: rgb(119, 107, 107);
   font-size: 2vh;    
   text-align:center;  
-  color: rgb(119, 107, 107);      
   margin-bottom: 20px;
 }
 
@@ -61,10 +61,9 @@ label {
   width: 80%;
   margin-bottom: 10px;
   margin-right: 10%;
-  margin-left: 10%;  
-      
+  margin-left: 10%;        
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.5em;  
+  font-size: 2.5vh;  
   color:black;
 }
 
@@ -95,22 +94,19 @@ h1 {
   
 h2 {  
   color: #4CAF50;  
-  font-size: 2vw; 
+  font-size: 2vh; 
   font-family: Arial, Helvetica, sans-serif;
   text-align:center;
 }
   
-
-   
 a {  
   color: white;  
   text-decoration: none;
   }
   
 p {
-  color: rgb(207, 34, 34);
+  color: red;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5vh; 
 }
-
 

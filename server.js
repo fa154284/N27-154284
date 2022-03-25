@@ -29,7 +29,7 @@ kunde.Vorname = "Pit"
 kunde.Geburtsdatum = "23.10.2000"
 kunde.Mail = "mueller@web.de"
 kunde.Kennwort = "123"
-kunde.Rufnummer = "0123-4567890"
+kunde.Rufnummer = "+49123/4567890"
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -123,30 +123,54 @@ meineApp.get('/login',(browserAnfrage, serverAntwort, next) => {
     serverAntwort.clearCookie('istAngemeldetAls')
 
     serverAntwort.render('login.ejs', {
-        meldung : "Bitte geben Sie die Zugangsdaten ein."
+        Meldung: "Bitte geben Sie die Zugangsdaten ein."
     })          
 })
 
 // Die meineApp.post('login') wird ausgeführt, sobald der Button
 // auf dem Login-Formular gedrückt wird.
 
+
 meineApp.get('/about',(browserAnfrage, serverAntwort, next) => {              
-    serverAntwort.render('about.ejs', {})          
+
+    serverAntwort.render('about.ejs', {
+    })          
 })
 
-meineApp.get('/profile',(browserAnfrage, serverAntwort, next) => { 
-    
-    
+meineApp.get('/profile',(browserAnfrage, serverAntwort, next) => {              
+
     serverAntwort.render('profile.ejs', {
-        Vorname:kunde.Vorname,
+        Vorname: kunde.Vorname,
         Nachname: kunde.Nachname,
         Mail: kunde.Mail,
         Rufnummer: kunde.Rufnummer,
         Kennwort: kunde.Kennwort
-    })        
+    })          
 })
+
+// Sobald der Speichern-Button auf der Profile-Seite gedrückt wird,
+// wird die meineApp.post('profile'...) abgearbeitet.
+
+meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {              
+    
+    // Der Wert der Eigenschaft von Mail im Browser wird
+    // zugewiesen (=) an die Eigenschaft Mail des Objekts kunde
+
+    kunde.Mail = browserAnfrage.body.Mail
+    kunde.Kennwort = browserAnfrage.body.Kennwort
+    kunde.Rufnummer = browserAnfrage.body.Rufnummer
+    
+    console.log("Profil gespeichert.")
+    
+    serverAntwort.render('profile.ejs', {
+        Vorname: kunde.Vorname,
+        Nachname: kunde.Nachname,
+        Mail: kunde.Mail,
+        Rufnummer: kunde.Rufnummer,
+        Kennwort: kunde.Kennwort
+    })
+})
+
 
 // require('./Uebungen/ifUndElse.js')
 // require('./Uebungen/klasseUndObjekt.js')
-
-
