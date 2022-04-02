@@ -63,7 +63,7 @@ meineApp.get('/',(browserAnfrage, serverAntwort, next) => {
         // Wenn der Kunde noch nicht eigeloggt ist, soll
         // die Loginseite an den Browser zurückgegeben werden.
         serverAntwort.render('login.ejs', {
-            meldung : ""
+            Meldung : ""
         })
     }                 
 })
@@ -105,7 +105,7 @@ meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {
         // gerenderte Login-Seite an den Browser zurückgegeben.
 
         serverAntwort.render('login.ejs', {
-            meldung : "Ihre Zugangsdaten scheinen nicht zu stimmen."
+            Meldung : "Ihre Zugangsdaten scheinen nicht zu stimmen."
         })
     }
 })
@@ -144,22 +144,58 @@ meineApp.get('/profile',(browserAnfrage, serverAntwort, next) => {
         Nachname: kunde.Nachname,
         Mail: kunde.Mail,
         Rufnummer: kunde.Rufnummer,
-        Kennwort: kunde.Kennwort
+        Kennwort: kunde.Kennwort,
+        Erfolgsmeldung: ""
     })          
 })
 
 // Sobald der Speichern-Button auf der Profile-Seite gedrückt wird,
 // wird die meineApp.post('profile'...) abgearbeitet.
 
-meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {              
+meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {  
+    
+    // Die Erfolgsmeldung für das Speichern der geänderten
+    // Profildaten wird in eine lokale Variable namens
+    // erfolgsmeldung gespeichert.
+
+    let erfolgsmeldung = ""
     
     // Der Wert der Eigenschaft von Mail im Browser wird
     // zugewiesen (=) an die Eigenschaft Mail des Objekts kunde
 
-    kunde.Mail = browserAnfrage.body.Mail
-    kunde.Kennwort = browserAnfrage.body.Kennwort
-    kunde.Rufnummer = browserAnfrage.body.Rufnummer
-    
+    if(kunde.Mail != browserAnfrage.body.Mail){
+
+        // Wenn der Wert der Eigenschaft von kunde.Mail abweicht 
+        // vom Wert der Eigenschaft Mail aus dem Browser-Formular
+        // dann wird die Erfolgsmeldung initialisiert:
+
+        erfolgsmeldung = erfolgsmeldung + "Änderung der Mail erfolgreich."
+        kunde.Mail = browserAnfrage.body.Mail
+        console.log(erfolgsmeldung)
+    }
+
+    if(kunde.Kennwort != browserAnfrage.body.Kennwort){
+
+        // Wenn der Wert der Eigenschaft von kunde.Mail abweicht 
+        // vom Wert der Eigenschaft Mail aus dem Browser-Formular
+        // dann wird die Erfolgsmeldung initialisiert:
+
+        erfolgsmeldung = erfolgsmeldung + "Änderung der Kennwort erfolgreich."
+        kunde.Kennwort = browserAnfrage.body.Kennwort
+        console.log(erfolgsmeldung)
+    }
+
+    if(kunde.Rufnummer != browserAnfrage.body.Kennwort){
+
+        // Wenn der Wert der Eigenschaft von kunde.Mail abweicht 
+        // vom Wert der Eigenschaft Mail aus dem Browser-Formular
+        // dann wird die Erfolgsmeldung initialisiert:
+
+        erfolgsmeldung = erfolgsmeldung + "Änderung der Rufnummer erfolgreich."
+        kunde.Rufnummer = browserAnfrage.body.Rufnummer
+        console.log(erfolgsmeldung)
+    }
+
     console.log("Profil gespeichert.")
     
     serverAntwort.render('profile.ejs', {
@@ -167,7 +203,8 @@ meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {
         Nachname: kunde.Nachname,
         Mail: kunde.Mail,
         Rufnummer: kunde.Rufnummer,
-        Kennwort: kunde.Kennwort
+        Kennwort: kunde.Kennwort,
+        Erfolgsmeldung: erfolgsmeldung
     })
 })
 
