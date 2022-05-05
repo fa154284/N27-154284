@@ -31,6 +31,47 @@ kunde.Mail = "mueller@web.de"
 kunde.Kennwort = "123"
 kunde.Rufnummer = "+49123/4567890"
 
+class Kundenberater{
+    constructor(){
+        this.IdKundenberater
+        this.Nachname
+        this.Vorname
+        this.Position
+        this.Mail
+        this.Rufnummer
+        this.Begruessung
+    }
+}
+
+let kundenberater = new Kundenberater ()
+
+kundenberater.IdKundenberater = 150000
+kundenberater.Nachname = "Zimmermann"
+kundenberater.Vorname = "Fritz"
+kundenberater.Mail = "zimmermann@n27.com"
+kundenberater.Rufnummer = "+49123/4567890"
+kundenberater.Begruessung = "Hallo. Ich bin's. Dein Kundenberater"
+kundenberater.Position = "Master of desaster"
+
+class Konto{
+    constructor(){
+        this.Kontostand
+        this.IBAN
+        this.Art 
+        this.Pin
+    }
+}
+
+let konto = new Konto ()
+
+
+konto.Kontostand = 5.000
+konto.IBAN = ""
+konto.Art = "Pit"
+konto.Pin = "23.10.2000"
+
+
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const meineApp = express()
@@ -149,6 +190,19 @@ meineApp.get('/profile',(browserAnfrage, serverAntwort, next) => {
     })          
 })
 
+
+meineApp.get('/support',(browserAnfrage, serverAntwort, next) => {              
+
+    serverAntwort.render('support.ejs', {
+        Vorname: kundenberater.Vorname,
+        Nachname: kundenberater.Nachname,
+        Mail: kundenberater.Mail,
+        Rufnummer: kundenberater.Rufnummer,
+        Position: kundenberater.Position
+    })          
+})
+
+
 // Sobald der Speichern-Button auf der Profile-Seite gedrückt wird,
 // wird die meineApp.post('profile'...) abgearbeitet.
 
@@ -207,6 +261,8 @@ meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {
         Erfolgsmeldung: erfolgsmeldung
     })
 })
+
+
 
 
 // require('./Uebungen/ifUndElse.js')
