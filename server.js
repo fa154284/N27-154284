@@ -1,3 +1,4 @@
+
 // Programme verarbeiten oft Objekte der realen Welt. Objekte haben 
 // Eigenschaften. In unserem Bankingprogramm interessieren uns Objekte,
 // wie z.B. Kunde, Konto, Filiale, Bankautomat, ...
@@ -58,8 +59,16 @@ kundenberater.Begruessung = "Hallo, ich bin's, Dein Kundenberater!"
 kundenberater.Position = "Master of desaster"
 
 
+// Die Klasse Konto ist der Bauplan für alle konto-Objekte.
+// IN der Klasse werden alle relevanten Eigenschaften definiert.
+// Die konto-=bjekte, die aus dieser Klasse erzeugt werden, haben die selben
+// Eigenschaften, aber unterschiedliche Eigenschaftswerte.
+
 class Konto{
     constructor(){
+
+        // Die relevanten Eigenschaften werden im constructor aufgelistet.
+
         this.Kontostand
         this.IBAN
         this.Kontoart
@@ -68,10 +77,17 @@ class Konto{
 }
 
 // Instanzierung eines Objekts namens konto vom Typ Konto
+// "let konto" bedeutet, dass ein Objekt namens konto existieren soll. Man sagt,
+// das konto wird deklariert.
+
+// "= new Konto()" nennt man die instanziierung. Bei der Instanziierung wird Festplattenspeicher
+// reserviert, um bei der anschließenden Initialisierung konkrete Eigenschaftswerte
+// für das Objekt zu speichern
 
 let konto = new Konto()
 
-// Initialisierung
+// Bei der Initialisierung werden konkrete Eigenschaften in die reservierten Speicher-
+// zellen geschrieben.
 
 konto.IBAN = "DE1234567890123456"
 konto.Kontostand = 1000000
@@ -293,6 +309,10 @@ meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {
     })
 })
 
+
+//Sobald der Bitton "kontostandAnzeigen" auf der index-Seite gedrückt wird,
+//wird die meineApp.get('/kontostandAnzeigen'-Funktion abgearbeitet)
+
 meineApp.get('/kontostandAnzeigen',(browserAnfrage, serverAntwort, next) => {              
     
     // Wenn ein signierter Cookie mit Namen 'istAngemeldetAls' im Browser vorhanden ist,
@@ -303,11 +323,16 @@ meineApp.get('/kontostandAnzeigen',(browserAnfrage, serverAntwort, next) => {
         
         // Die Index-Seite wird an den Browser gegeben:
 
-        serverAntwort.render('kontostandAnzeigen.ejs',{})
+        serverAntwort.render('kontostandAnzeigen.ejs',{
+            Kontostand: konto.Kontostand,
+            IBAN: konto.IBAN,
+            Kontoart: konto.Kontoart
+        })
     }else{
 
         // Wenn der Kunde noch nicht eigeloggt ist, soll
         // die Loginseite an den Browser zurückgegeben werden.
+
         serverAntwort.render('login.ejs', {
             Meldung: ""
         })
@@ -315,6 +340,20 @@ meineApp.get('/kontostandAnzeigen',(browserAnfrage, serverAntwort, next) => {
 })
 
 
+meineApp.get('/kreditBerechnen',(browserAnfrage, serverAntwort, next) => {              
+
+    if(browserAnfrage.signedCookies['istAngemeldetAls']){
+        serverAntwort.render('kreditBerechnen.ejs', {
+            
+        })
+    }else{
+        serverAntwort.render('login.ejs',{
+            Meldung: ""
+        })
+    }              
+})
+
+
 //require('./Uebungen/ifUndElse.js')
 //require('./Uebungen/klasseUndObjekt.js')
-require('./Uebungen/klausur.js')
+//require('./Uebungen/klausur.js')
