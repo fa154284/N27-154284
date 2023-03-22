@@ -7,12 +7,12 @@
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>N27 - Kontostand anzeigen</title>
+    <title>N27 - Ueberweisen</title>
 </head>
 <body>
     <div class="rahmen">
         <div class="kopf">
-            <h1>N27 - Kontostand anzeigen</h1>
+            <h1>N27 - Ueberweisen</h1>
         </div>
         <div class="navigationsleiste">            
             <a href="/">
@@ -32,18 +32,18 @@
             </a>
         </div>
         <div class="inhaltsbereich">
+            
+            <label>Überweisung:</label><br>
+                <input type="number" name="Ueberweisungssumme" readonly value=<%= Überweisung %> ><br>
+                <label>Empfänger:</label><br>
+                <input type="number" name="Empfängeriban" value=<%= Iban %> ><br> 
             <form method="post">
-                <select id="kontoArt" name="kontoArt">                    
-                    <% for (var i=0; i < MeineIbans.length; i++){ %>
-                        <option value="<%= MeineIbans[i].iban %>"><%= MeineIbans[i].iban %></option>
-                    <% } %>
-                </select>
-                <label>Kontoart:</label><br>
-                <input type="text" name="Kontoart" readonly value=<%= MeineIbans[0].kontoart %>  ><br>
-                <label>Kontostand:</label><br>
-                <input type="number" name="Kontostand" readonly value=<%= MeineIbans[0].anfangssaldo %>  ><br>
+                
+                <button class="login" formaction="/ueberweisen" disabled>Überweisung tätigen</button>
             </form>   
-            <p class="erfolgsmeldung"><%= Erfolgsmeldung %></p>
+            <p class="erfolgsmeldung"> <%= Erfolgsmeldung %></p>
+
+
         </div>
         <div class="fusszeile">
             &copy; 2022 GW21A

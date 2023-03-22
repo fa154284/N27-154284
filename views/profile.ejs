@@ -25,11 +25,11 @@
                 <i class="fa fa-info fa-2x" aria-hidden="true" title="Über uns"></i>
             </a>   --
             <a href="/support">
-                <i class="fa fa-phone-square fa-2x" title="support"></i>
-            </a> --
+                <i class="fa fa-phone-square fa-2x" aria-hidden="true" title="Support"></i>
+            </a>   --
             <a href="/login">
                 <i class="fa fa-sign-out fa-2x" title="Abmelden"></i>
-            </a> 
+            </a>
         </div>
         <div class="inhaltsbereich">
             <form method="post">
@@ -39,13 +39,13 @@
                 <input type="text" name="Nachname" value=<%= Nachname %> readonly><br>        
                 <label>Mail:</label><br>
                 <input type="email" name="Mail" value=<%= Mail %>  ><br>
-                <label>Rufnummer:</label><br>
-                <input type="tel" name="Rufnummer" value=<%= Rufnummer %>  ><br>
                 <label>Kennwort:</label><br>
                 <input type="password" name="Kennwort" value=<%= Kennwort %>  ><br>
+                <label>Rufnummer:</label><br>
+                <input type="tel" name="Rufnummer" value=<%= Rufnummer %>  ><br>
                 <button class="login" formaction="/profile">Änderung speichern</button>
-            </form> 
-            <p class="erfolgsmeldung"><%= Erfolgsmeldung %></p>   
+            </form>   
+            <p class="erfolgsmeldung"><%= Erfolgsmeldung %></p>
         </div>
         <div class="fusszeile">
             &copy; 2022 GW21A

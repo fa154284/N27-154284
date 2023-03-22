@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +7,12 @@
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>N27 - Kontostand anzeigen</title>
+    <title>N27 - Konto anlegen</title>
 </head>
 <body>
     <div class="rahmen">
         <div class="kopf">
-            <h1>N27 - Kontostand anzeigen</h1>
+            <h1>N27 - Konto anlegen</h1>
         </div>
         <div class="navigationsleiste">            
             <a href="/">
@@ -33,20 +33,17 @@
         </div>
         <div class="inhaltsbereich">
             <form method="post">
-                <select id="kontoArt" name="kontoArt">                    
-                    <% for (var i=0; i < MeineIbans.length; i++){ %>
-                        <option value="<%= MeineIbans[i].iban %>"><%= MeineIbans[i].iban %></option>
-                    <% } %>
+                <label for="kontoArt">Kontoart wählen:</label><br>
+                <select id="kontoArt" name="kontoArt">
+                    <option value="girokonto">Girokonto</option>
+                    <option value="sparkonto">Sparkonto</option>                
                 </select>
-                <label>Kontoart:</label><br>
-                <input type="text" name="Kontoart" readonly value=<%= MeineIbans[0].kontoart %>  ><br>
-                <label>Kontostand:</label><br>
-                <input type="number" name="Kontostand" readonly value=<%= MeineIbans[0].anfangssaldo %>  ><br>
-            </form>   
-            <p class="erfolgsmeldung"><%= Erfolgsmeldung %></p>
+                <button class="login" formaction="/kontoAnlegen">Neues Konto anlegen</button>
+            </form>
+            <p class="erfolg"> <%= Erfolgsmeldung %></p>
         </div>
         <div class="fusszeile">
-            &copy; 2022 GW21A
+            &copy; 2023 GW21A
         </div>
     </div>
 </body>
